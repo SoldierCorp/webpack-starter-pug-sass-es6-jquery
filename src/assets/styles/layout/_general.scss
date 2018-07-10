@@ -1,0 +1,34 @@
+/* src/assets/styles/layout/_general.scss  */
+
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  @include isFlex(center, center);
+  font-family: $quicksand;
+  background: $darkslategray;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+p {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}

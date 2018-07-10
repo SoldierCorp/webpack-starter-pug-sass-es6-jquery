@@ -1,0 +1,50 @@
+{
+  "name": "my-project",
+  "version": "0.0.1",
+  "description": "My project description",
+  "main": "app.js",
+  "repository": "git@github.com:my-user/my-repo.git",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-network": "webpack-dev-server --config ./build/webpack.config.js --progress --open --host 0.0.0.0",
+    "dev": "webpack-dev-server --config ./build/webpack.config.js --env.NODE_ENV=development --progress --open",
+    "prod": "webpack --config ./build/webpack.config.js --env.NODE_ENV=production -p --progress"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.2.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-module-resolver": "^3.1.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.1.0",
+    "node-sass": "^4.7.2",
+    "postcss": "^6.0.21",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.3",
+    "postcss-modules": "^1.1.0",
+    "pug": "^2.0.3",
+    "pug-loader": "^2.3.0",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
+    "tslib": "^1.9.0",
+    "url-loader": "^1.0.1",
+    "webpack": "3.x",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "2.x.x",
+    "webpack-notifier": "^1.6.0"
+  },
+  "dependencies": {
+    "gsap": "^1.20.4",
+    "jquery": "^3.3.1",
+    "normalize.css": "^8.0.0",
+    "scrollmagic": "^2.0.5"
+  }
+}

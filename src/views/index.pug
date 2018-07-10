@@ -1,0 +1,18 @@
+extends ./layouts/master.pug
+
+block title
+  title My Page - Home
+
+block manifestBrowserconfigFiles
+  link(href='../manifest.json', rel='manifest')
+  meta(name='msapplication-config' content='../browserconfig.xml')
+
+block content
+
+  //- Desktop page
+  section.page.home__page
+    h1.page__title # Index page
+    p Thank you for your supporting :)
+    p
+      a(href="https://www.buymeacoffee.com/edgardo" target="_blank")
+        img(src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;")

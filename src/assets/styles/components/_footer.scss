@@ -1,0 +1,25 @@
+/* src/assets/styles/components/_footer.scss  */
+
+.footer {
+  background: $lightseagreen;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 250px;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  p {
+    font-size: 12px;
+  }
+  a {
+    font-size: 15px;
+  }
+}
+
+/*
+  Responsive
+*/
+
+@media screen and(max-width: $grid-width) {
+
+}

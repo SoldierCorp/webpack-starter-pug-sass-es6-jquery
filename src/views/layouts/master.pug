@@ -1,0 +1,62 @@
+//- Master layout
+
+doctype html
+html(lang='en')
+  head
+
+    //- Meta
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+
+    meta(name='msapplication-TileColor', content='#0E0E0E')
+    meta(name='theme-color', content='#0E0E0E')
+
+    //- SEO
+
+    //- Classic
+    meta(name='description' content='Your meta description')
+    meta(name='keywords', content='your, meta, keywords')
+    meta(name='author' content='Edgardo Ramírez :)')
+
+    //- Twitter
+    meta(name='twitter:card', content='summary')
+    meta(name='twitter:site', content='@_soldier')
+    meta(name='twitter:image', content='https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-665333.jpg')
+    meta(name='twitter:description', content='Your meta Twitter description')
+
+    //- Facebook
+    meta(property='og:url', content='https://edgardorl.com')
+    meta(property='og:title', content='Your meta Facebook title')
+    meta(property='og:description', content='Your meta Facebook description')
+    meta(property='og:image', content='https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-665333.jpg')
+    meta(property='og:type', content='website')
+
+    //- Favicons
+    link(rel='apple-touch-icon', sizes='180x180', href=require('images/favicons/apple-touch-icon.png'))
+    link(rel='icon', type='image/png', sizes='32x32', href=require('images/favicons/favicon-32x32.png'))
+    link(rel='icon', type='image/png', sizes='16x16', href=require('images/favicons/favicon-16x16.png'))
+    link(rel='shortcut icon', href=require('images/favicons/favicon.ico'))
+
+    //- Fonts
+    link(href="https://fonts.googleapis.com/css?family=Quicksand", rel='stylesheet')
+
+    //- Title
+    block title
+      title Your project!
+
+    //- Manifest browserconfig files
+    block manifestBrowserconfigFiles
+      link(rel='manifest', href='./manifest.json')
+      meta(name='msapplication-config' content='./browserconfig.xml')
+
+  body
+
+    //- block content
+    block content
+
+    //- Footer
+    include ../components/footer.pug
+
+    //- block scripts
+    block scripts
