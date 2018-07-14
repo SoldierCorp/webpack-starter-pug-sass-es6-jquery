@@ -21,7 +21,7 @@ module.exports = env => {
     output: {
       path: path.resolve(__dirname, '../dist'),
       publicPath: '/',
-      filename: 'assets/js/[name].bundle.js'
+      filename: 'assets/js/[name].[hash:7].bundle.js'
     },
     devServer: {
       contentBase: path.resolve(__dirname, '../src'),
@@ -88,7 +88,7 @@ module.exports = env => {
           test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
           loader: 'url-loader',
           options: {
-            limit: 10000,
+            limit: 3000,
             name: 'assets/images/[name].[hash:7].[ext]'
           }
         },
@@ -96,7 +96,7 @@ module.exports = env => {
           test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
           loader: 'url-loader',
           options: {
-            limit: 10000,
+            limit: 5000,
             name: 'assets/fonts/[name].[hash:7].[ext]'
           }
         },
@@ -119,7 +119,7 @@ module.exports = env => {
         { from: 'assets/images/favicons/mstile-150x150.png', to: 'assets/images/mstile-150x150.png' }
       ]),
       new ExtractTextPlugin({
-        filename: 'assets/css/[name].bundle.css', //Hash removed in order to track the build file
+        filename: 'assets/css/[name].[hash:7].bundle.css',
         allChunks: true
       }),
       new webpack.optimize.CommonsChunkPlugin({
