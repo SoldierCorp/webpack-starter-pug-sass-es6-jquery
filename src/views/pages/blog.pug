@@ -3,6 +3,11 @@ extends ../layouts/master.pug
 block title
   title My Page - Blog
 
+block basicSeo
+  meta(name='description' content='Blog page')
+  meta(name='keywords', content='blog, page')
+  meta(name='author' content='')
+
 block manifestBrowserconfigFiles
   link(rel='manifest', href='../manifest.json')
   meta(name='msapplication-config' content='../browserconfig.xml')

@@ -3,6 +3,11 @@ extends ../layouts/master.pug
 block title
   title My Page - Contact
 
+block basicSeo
+  meta(name='description' content='Contact page')
+  meta(name='keywords', content='contact, page')
+  meta(name='author' content='')
+
 block manifestBrowserconfigFiles
   link(href='../manifest.json', rel='manifest')
   meta(name='msapplication-config' content='../browserconfig.xml')
