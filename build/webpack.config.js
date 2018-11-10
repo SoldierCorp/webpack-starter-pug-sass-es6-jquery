@@ -32,6 +32,7 @@ module.exports = env => {
       alias: {
         source: path.resolve(__dirname, '../src'), // Relative path of src
         images: path.resolve(__dirname, '../src/assets/images'), // Relative path of images
+        fonts: path.resolve(__dirname, '../src/assets/fonts'), // Relative path of fonts
       }
     },
 

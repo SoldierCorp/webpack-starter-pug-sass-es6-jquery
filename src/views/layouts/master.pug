@@ -40,8 +40,11 @@ html(lang='en')
     link(rel='icon', type='image/png', sizes='16x16', href=require('images/favicons/favicon-16x16.png'))
     link(rel='shortcut icon', href=require('images/favicons/favicon.ico'))
 
-    //- Fonts
-    link(href="https://fonts.googleapis.com/css?family=Quicksand", rel='stylesheet')
+    //- Preload fonts
+    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Bold.woff'), rel='preload', as='font', crossorigin)
+    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Medium.woff'), rel='preload', as='font', crossorigin)
+    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Regular.woff'), rel='preload', as='font', crossorigin)
+    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Light.woff'), rel='preload', as='font', crossorigin)
 
     //- Title
     block title
