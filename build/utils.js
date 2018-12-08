@@ -1,17 +1,21 @@
-exports.pages = function(env) {
+exports.pages = function (env, folder = '') {
+  const rootPagesFolderName = 'pages'
   const HtmlWebpackPlugin = require('html-webpack-plugin')
   const fs = require('fs')
   const path = require('path')
-  const viewsFolder = path.resolve(__dirname, '../src/views/pages')
+  const viewsFolder = path.resolve(__dirname, `../src/views/${rootPagesFolderName}/${folder}`)
 
   var pages = []
 
   fs.readdirSync(viewsFolder).forEach(view => {
-    const viewName = view.split('.')[0];
+    if (view.split('.')[1] === undefined)
+      return false;
 
+    const viewName = view.split('.')[0];
+    const fileName = folder === '' ? `${viewName}/index.html` : `${folder}/${viewName}/index.html`;
     const options = {
-      filename: `${viewName}/index.html`,
-      template: `views/pages/${view}`,
+      filename: fileName,
+      template: `views/${rootPagesFolderName}/${folder}/${view}`,
       inject: true
     };
 
