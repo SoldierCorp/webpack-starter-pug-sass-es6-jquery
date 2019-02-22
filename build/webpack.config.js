@@ -1,10 +1,11 @@
 // Libraries
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // Files
 const utils = require('./utils')
@@ -25,7 +26,6 @@ module.exports = env => {
     },
     devServer: {
       contentBase: path.resolve(__dirname, '../src'),
-      // hot: true,
     },
     resolve: {
       extensions: ['.js'],
@@ -37,7 +37,7 @@ module.exports = env => {
     },
 
     /*
-      Loaders with their configurations
+      Loaders with configurations
     */
     module: {
       rules: [
@@ -53,29 +53,27 @@ module.exports = env => {
         },
         {
           test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: 'css-loader'
-          })
+          use: [
+            env === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                sourceMap: true,
+                minimize: true,
+                colormin: false,
+              },
+            },
+          ],
         },
         {
-          use: 'css-loader!sass-loader?sourceMap',
-          test: /\.(sass|scss)$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 1,
-                  sourceMap: true,
-                  minimize: true
-                }
-              },
-              'postcss-loader?sourceMap',
-              'sass-loader?sourceMap'
-            ]
-          })
+          test: /\.scss$/,
+          use: [
+            env === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
+            { loader: 'css-loader', options: { importLoaders: 1, minimize: true, sourceMap: true, colormin: false } }, // translates CSS into CommonJS
+            'postcss-loader',
+            'sass-loader', // compiles Sass to CSS
+          ],
         },
         {
           test: /\.pug$/,
@@ -111,6 +109,30 @@ module.exports = env => {
         }
       ]
     },
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true,
+        }),
+      ],
+      splitChunks: {
+        cacheGroups: {
+          default: false,
+          vendors: false,
+          // vendor chunk
+          vendor: {
+            filename: 'assets/js/vendor.[hash:7].bundle.css',
+            // sync + async chunks
+            chunks: 'all',
+            // import file path containing node_modules
+            test: /node_modules/
+          }
+        }
+      }
+    },
+
     plugins: [
       new CopyWebpackPlugin([
         { from: '../manifest.json', to: 'manifest.json' },
@@ -119,12 +141,9 @@ module.exports = env => {
         { from: 'assets/images/favicons/android-chrome-256x256.png', to: 'assets/images/android-chrome-256x256.png' },
         { from: 'assets/images/favicons/mstile-150x150.png', to: 'assets/images/mstile-150x150.png' }
       ]),
-      new ExtractTextPlugin({
+      new MiniCssExtractPlugin({
         filename: 'assets/css/[name].[hash:7].bundle.css',
-        allChunks: true
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor'
+        chunkFilename: '[id].css',
       }),
 
       /*

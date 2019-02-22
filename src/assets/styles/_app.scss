@@ -1,32 +1,34 @@
+@import 'normalize.css';
+
 /*
   Base
 */
-@import './base/_fonts';
+@import './base/fonts';
 
 /*
   Utils
 */
-@import './utils/_dimensions';
-@import './utils/_mixins';
-@import './utils/_colors';
-@import './utils/_keyframes';
+@import './utils/dimensions';
+@import './utils/mixins';
+@import './utils/colors';
+@import './utils/keyframes';
 
 /*
   Components
 */
-@import './components/_footer';
-@import './components/_button';
-@import './components/_link';
+@import './components/footer';
+@import './components/button';
+@import './components/link';
 
 /*
   Layout
 */
-@import './layout/_page';
-@import './layout/_general';
+@import './layout/page';
+@import './layout/general';
 
 /*
   Pages
 */
-@import './pages/_index';
-@import './pages/_blog';
-@import './pages/_contact';
+@import './pages/index';
+@import './pages/blog';
+@import './pages/contact';
