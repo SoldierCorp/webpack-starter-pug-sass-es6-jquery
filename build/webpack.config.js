@@ -123,7 +123,7 @@ module.exports = env => {
           vendors: false,
           // vendor chunk
           vendor: {
-            filename: 'assets/js/vendor.[hash:7].bundle.css',
+            filename: 'assets/js/vendor.[hash:7].bundle.js',
             // sync + async chunks
             chunks: 'all',
             // import file path containing node_modules
