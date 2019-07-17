@@ -22,7 +22,11 @@ The purpose if this webpack starter is to allow people to create websites withou
 
 ## Contributions
 
-You can contribute directly to this repository or create a fork and peform your own modifications, feel free to use it in the way you want!
+You can contribute directly to this repository or create a fork and peform your own modifications.
+
+## Terms of use
+
+Feel free to use it in the way you want just be sure to add a link/mention to original repository or the author, me :)
 
 ## Donations
 
