@@ -1,13 +1,13 @@
-Webpack project starter with Pug, Sass/Stylus, jQuery, Babel and Yarn
+Webpack project starter with Pug, Sass/Stylus, jQuery, VanillaJS, Babel and Yarn
 ===================
 
-The purpose if this webpack starter is to allow people to create websites without frameworks/libraries like React, Angular, Vue and only using simple but powerful technologies to build quality websites.
+The purpose if this Webpack Starter is to allow people to create websites without frameworks/libraries like React, Angular, Vue only using simple but powerful technologies to build quality websites.
 
 ## Technologies used
 
 - Templating: `Pug`
 - Styling: `Sass` *but you can also use stylus*
-- Scripting: `jQuery or plain Javascript`
+- Scripting: `jQuery or VanillaJS(plain Javascript)`
 - JS Compiler: `Babel ES6`
 
 ## Features
@@ -22,11 +22,11 @@ The purpose if this webpack starter is to allow people to create websites withou
 
 ## Contributions
 
-You can contribute directly to this repository or create a fork and peform your own modifications.
+You can contribute directly to this repository or create a fork and perform your own modifications.
 
 ## Terms of use
 
-Feel free to use it in the way you want just be sure to add a link/mention to original repository or the author, me :)
+Feel free to use it in the way you want just be sure to add a link/mention to the original repository or the author, me :)
 
 ## Donations
 
