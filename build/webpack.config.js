@@ -21,7 +21,6 @@ module.exports = env => {
     },
     output: {
       path: path.resolve(__dirname, '../dist'),
-      publicPath: '/',
       filename: 'assets/js/[name].[hash:7].bundle.js'
     },
     devServer: {
