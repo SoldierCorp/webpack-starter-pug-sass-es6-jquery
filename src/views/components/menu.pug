@@ -1,0 +1,11 @@
+mixin menu(currentPage)
+  nav.menu
+    ul.menu__ul.ml-auto
+      li.menu__item
+        a.menu__link(href='/', class=currentPage === 'home' ? 'active' : '') Home
+      li.menu__item
+        a.menu__link(href='/contact', class=currentPage === 'contact' ? 'active' : '') Contact
+      li.menu__item
+        a.menu__link(href='/blog', class=currentPage === 'blog' ? 'active' : '') Blog
+      li.menu__item
+        a.menu__link(href='/blog/example-post', class=currentPage === 'blog-post' ? 'active' : '') Blog Post

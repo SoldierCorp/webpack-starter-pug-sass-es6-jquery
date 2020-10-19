@@ -1,0 +1,26 @@
+/* src/assets/styles/components/_menu.scss  */
+
+.menu {
+  position: fixed;
+  top: 0;
+  color: white;
+  width: 100%;
+  padding: 15px;
+}
+.menu__ul {
+  @include isFlex(center, flex-start);
+}
+.menu__item {
+  & + .menu__item {
+    margin-left: 20px;
+  }
+}
+.menu__link {
+  color: white;
+  border-bottom: 2px solid transparent;
+  font-size: 15px;
+  &:hover,
+  &.active {
+    border-color: white;
+  }
+}

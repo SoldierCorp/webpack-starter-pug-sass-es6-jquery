@@ -1,7 +1,17 @@
 Webpack project starter with Pug, Sass/Stylus, jQuery, VanillaJS, Babel and Yarn
 ===================
 
-The purpose if this Webpack Starter is to allow people to create websites without frameworks/libraries like React, Angular, Vue only using simple but powerful technologies to build quality websites.
+The purpose of this Webpack Starter is to allow people to create websites without frameworks/libraries like React, Angular, Vue but only using simple but powerful technologies to build quality websites.
+
+With this starter you can have your URLs clean by removing the .html extension. For example:
+
+- *website.com/contact*
+- *website.com/blog*
+- *website.com/profile*
+
+## Demo
+
+🔗 https://webpack-starter.netlify.app/
 
 ## Technologies used
 
@@ -19,6 +29,11 @@ The purpose if this Webpack Starter is to allow people to create websites withou
 - `Editorconfig`
 - Yarn instead NPM
 - PostCSS
+
+## Run dev server in a different port
+```
+yarn dev --port your_port_number
+```
 
 ## Contributions
 

@@ -52,10 +52,13 @@ html(lang='en')
 
     //- Manifest browserconfig files
     block manifestBrowserconfigFiles
-      link(rel='manifest', href='./manifest.json' crossorigin)
+      link(rel='manifest', href='./manifest.json', crossorigin)
       meta(name='msapplication-config' content='./browserconfig.xml')
 
   body
+
+    //- Menu
+    include ../components/menu.pug
 
     //- block content
     block content

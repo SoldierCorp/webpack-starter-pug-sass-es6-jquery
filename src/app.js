@@ -3,8 +3,8 @@
 // Styles
 import 'styles/_app.scss';
 
-$(document).ready(() => {
+$(function() {
   console.log('Ready!');
 
   require('scripts/demo');
-});
+})

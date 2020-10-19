@@ -1,5 +1,7 @@
 extends ../../layouts/master.pug
 
+include ../../mixins/support.pug
+
 block title
   title My Page - Blog post
 
@@ -14,6 +16,10 @@ block manifestBrowserconfigFiles
 
 block content
 
+  // Menu
+  +menu('blog-post')
+
   //- Desktop page
   section.page.blogpost__page
     h1.page__title # Blog post page
+    +support()
