@@ -94,7 +94,6 @@ module.exports = env => {
           test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
           loader: 'url-loader',
           options: {
-            limit: 5000,
             name: 'assets/fonts/[name].[hash:7].[ext]'
           }
         },
