@@ -41,10 +41,10 @@ html(lang='en')
     link(rel='shortcut icon', href=require('images/favicons/favicon.ico'))
 
     //- Preload fonts
-    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Bold.woff'), rel='preload', as='font', crossorigin)
-    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Medium.woff'), rel='preload', as='font', crossorigin)
-    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Regular.woff'), rel='preload', as='font', crossorigin)
-    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Light.woff'), rel='preload', as='font', crossorigin)
+    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Bold.woff'), rel='prefetch', as='font', crossorigin)
+    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Medium.woff'), rel='prefetch', as='font', crossorigin)
+    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Regular.woff'), rel='prefetch', as='font', crossorigin)
+    link(type='font/woff', href=require('source/assets/fonts/Quicksand-Light.woff'), rel='prefetch', as='font', crossorigin)
 
     //- Title
     block title
@@ -52,7 +52,7 @@ html(lang='en')
 
     //- Manifest browserconfig files
     block manifestBrowserconfigFiles
-      link(rel='manifest', href='./manifest.json')
+      link(rel='manifest', href='./manifest.json' crossorigin)
       meta(name='msapplication-config' content='./browserconfig.xml')
 
   body
