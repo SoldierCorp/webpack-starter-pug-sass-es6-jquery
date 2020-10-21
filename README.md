@@ -22,13 +22,13 @@ With this starter you can have your URLs clean by removing the .html extension. 
 
 ## Features
 
-- Well organized folder structure for view, styles and assets.
+- Well organized folder structure for views, styles and assets.
 - Webpack notifier on every compilation.
 - Compatibility with `manifest`, `browserconfig` and other external files you wish to include.
 - `Babel module resolver` configured to use alias and simplify the paths you need to import.
 - `Editorconfig`
-- Yarn instead NPM
-- PostCSS
+- Yarn.
+- PostCSS.
 
 ## Run dev server in a different port
 ```
@@ -37,14 +37,14 @@ yarn dev --port your_port_number
 
 ## Contributions
 
-You can contribute directly to this repository or create a fork and perform your own modifications.
+Any contribution is well received. You only have to fork this repo and submit your PRs with some descriptive text.
 
 ## Terms of use
 
-Feel free to use it in the way you want just be sure to add a link/mention to the original repository or the author, me :)
+Feel free to use it in the way you want. Just be sure to add a link/mention to the original repository or the author, me 🙂
 
 ## Donations
 
-You can of course help a little bit with some donation to buy more coffee :)
+A donation to buy more coffee is always well received if this starter helped you to create your website!
 
 <a href="https://www.buymeacoffee.com/edgardo" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
