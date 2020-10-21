@@ -35,7 +35,7 @@ With this starter you can have your URLs clean by removing the .html extension. 
 yarn dev --port your_port_number
 ```
 
-## Showcase
+## 🌠 Showcase
 Websites using this starter across the web.
 - https://gameserverkings.com/
 - https://svil.co/
