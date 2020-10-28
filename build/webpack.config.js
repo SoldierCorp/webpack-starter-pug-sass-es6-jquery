@@ -1,4 +1,6 @@
 // Libraries
+require('../postcss.config');
+
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,32 +8,38 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+const ASSET_PATH = process.env.ASSET_PATH || '/';
+
 
 // Files
 const utils = require('./utils')
-const plugins = require('../postcss.config');
 
 // Configuration
 module.exports = env => {
 
   return {
-    context: path.resolve(__dirname, '../src'),
+    context: path.join(__dirname, '../src'),
     entry: {
-      app: './app.js'
+      app: path.join(__dirname, '../src/app.js'),
     },
     output: {
-      path: path.resolve(__dirname, '../dist'),
-      filename: 'assets/js/[name].[hash:7].bundle.js'
+      publicPath: ASSET_PATH,
+      path: path.join(__dirname, '../dist'),
+      filename: 'assets/js/[name].[contenthash:7].bundle.js'
     },
     devServer: {
-      contentBase: path.resolve(__dirname, '../src'),
+      contentBase: path.join(__dirname, '../src'),
+      compress: true,
+      open: true
     },
     resolve: {
       extensions: ['.js'],
       alias: {
-        source: path.resolve(__dirname, '../src'), // Relative path of src
-        images: path.resolve(__dirname, '../src/assets/images'), // Relative path of images
-        fonts: path.resolve(__dirname, '../src/assets/fonts'), // Relative path of fonts
+        source: path.join(__dirname, '../src'), // Relative path of src
+        images: path.join(__dirname, '../src/assets/images'), // Relative path of images
+        fonts: path.join(__dirname, '../src/assets/fonts'), // Relative path of fonts
       }
     },
 
@@ -41,12 +49,12 @@ module.exports = env => {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.m?js$/,
           exclude: [/node_modules/],
           use: [
             {
               loader: 'babel-loader',
-              options: { presets: ['es2015'] }
+              options: { presets: ['@babel/preset-env'] }
             }
           ]
         },
@@ -69,7 +77,7 @@ module.exports = env => {
           test: /\.scss$/,
           use: [
             env === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
-            { loader: 'css-loader', options: { importLoaders: 1, minimize: true, sourceMap: true, colormin: false } }, // translates CSS into CommonJS
+            { loader: 'css-loader', options: { importLoaders: 1, sourceMap: true } }, // translates CSS into CommonJS
             'postcss-loader',
             'sass-loader', // compiles Sass to CSS
           ],
@@ -87,33 +95,36 @@ module.exports = env => {
           loader: 'url-loader',
           options: {
             limit: 3000,
-            name: 'assets/images/[name].[hash:7].[ext]'
+            name: 'assets/images/[name].[contenthash:7].[ext]'
           }
         },
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
           loader: 'url-loader',
           options: {
-            name: 'assets/fonts/[name].[hash:7].[ext]'
+            limit: 5000,
+            name: 'assets/fonts/[name].[contenthash:7].[ext]'
           }
         },
-        {
+        /* {
           test: /\.(mp4)(\?.*)?$/,
           loader: 'url-loader',
           options: {
             limit: 10000,
-            name: 'assets/videos/[name].[hash:7].[ext]'
+            name: 'assets/videos/[name].[contenthash:7].[ext]'
           }
-        }
+        } */
       ]
     },
     optimization: {
+      minimize: true,
       minimizer: [
         new TerserPlugin({
           cache: true,
           parallel: true,
           sourceMap: true,
         }),
+        new OptimizeCSSAssetsPlugin({})
       ],
       splitChunks: {
         cacheGroups: {
@@ -121,7 +132,7 @@ module.exports = env => {
           vendors: false,
           // vendor chunk
           vendor: {
-            filename: 'assets/js/vendor.[hash:7].bundle.js',
+            filename: 'assets/js/vendor.[chunkhash:7].bundle.js',
             // sync + async chunks
             chunks: 'all',
             // import file path containing node_modules
@@ -132,15 +143,17 @@ module.exports = env => {
     },
 
     plugins: [
-      new CopyWebpackPlugin([
-        { from: '../manifest.json', to: 'manifest.json' },
-        { from: '../browserconfig.xml', to: 'browserconfig.xml' },
-        { from: 'assets/images/favicons/android-chrome-192x192.png', to: 'assets/images/android-chrome-192x192.png' },
-        { from: 'assets/images/favicons/android-chrome-256x256.png', to: 'assets/images/android-chrome-256x256.png' },
-        { from: 'assets/images/favicons/mstile-150x150.png', to: 'assets/images/mstile-150x150.png' }
-      ]),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: '../manifest.json', to: 'manifest.json' },
+          { from: '../browserconfig.xml', to: 'browserconfig.xml' },
+          { from: 'assets/images/favicons/android-chrome-192x192.png', to: 'assets/images/android-chrome-192x192.png' },
+          { from: 'assets/images/favicons/android-chrome-256x256.png', to: 'assets/images/android-chrome-256x256.png' },
+          { from: 'assets/images/favicons/mstile-150x150.png', to: 'assets/images/mstile-150x150.png' }
+        ]
+      }),
       new MiniCssExtractPlugin({
-        filename: 'assets/css/[name].[hash:7].bundle.css',
+        filename: 'assets/css/[name].[chunkhash:7].bundle.css',
         chunkFilename: '[id].css',
       }),
 
@@ -148,14 +161,15 @@ module.exports = env => {
         Pages
       */
 
-      // // Desktop page
+      // Desktop page
       new HtmlWebpackPlugin({
+        minify: !env === 'development',
         filename: 'index.html',
         template: 'views/index.pug',
         inject: true
       }),
 
-      ...utils.pages(env),
+      ...utils.pages(env), // env, public path, parent folder
       ...utils.pages(env, 'blog'),
 
       new webpack.ProvidePlugin({
