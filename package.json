@@ -2,6 +2,11 @@
   "name": "my-project",
   "version": "0.0.1",
   "description": "My project description",
+  "author": {
+		"name" : "Edgardo Ramírez León",
+		"email" : "me@edgardo.com",
+		"url" : "https://edgardorl.com"
+	},
   "main": "app.js",
   "repository": "git@github.com:my-user/my-repo.git",
   "license": "MIT",
