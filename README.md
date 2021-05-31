@@ -1,9 +1,9 @@
 Webpack project starter with Pug, Sass/Stylus, jQuery, VanillaJS, Babel and Yarn
 ===================
 
-The purpose of this Webpack Starter is to allow people to create websites without frameworks/libraries like React, Angular, Vue but only using simple but powerful technologies to build quality websites.
+The purpose of this Webpack Starter is to allow people to create websites without any framework/library like React, Angular, Vue but only using simple but powerful technologies to build quality websites.
 
-With this starter you can have your URLs clean by removing the .html extension. For example:
+With this starter you can have clean URLs by removing the .html extension. For example:
 
 - *website.com/contact*
 - *website.com/blog*
@@ -16,15 +16,15 @@ With this starter you can have your URLs clean by removing the .html extension. 
 ## Technologies used
 
 - Templating: `Pug`
-- Styling: `Sass` *but you can also use stylus*
+- Styling: `Sass` *you can also use stylus*
 - Scripting: `jQuery or VanillaJS(plain Javascript)`
 - JS Compiler: `Babel ES6`
 
 ## Features
 
-- Well organized folder structure for views, styles and assets.
+- Well organized folder structure for views, styles, and assets.
 - Webpack notifier on every compilation.
-- Compatibility with `manifest`, `browserconfig` and other external files you wish to include.
+- Compatibility with `manifest`, `browserconfig`, and other external files you wish to include.
 - `Babel module resolver` configured to use alias and simplify the paths you need to import.
 - `Editorconfig`
 - Yarn.
@@ -44,7 +44,7 @@ Websites using this starter across the web.
 - https://fluidai.netlify.app/
 - https://safecontract.netlify.app/
 
-Do you built a website with this starter? Add your website url to this file and submit a PR 🙂
+Did you build a website with this starter? Add your website url to this file and submit a PR 🙂
 
 ## Contributions
 
@@ -56,6 +56,6 @@ Feel free to use it in the way you want. Just be sure to add a link/mention to t
 
 ## Donations
 
-A donation to buy more coffee is always well received if this starter helped you to create your website!
+A donation to buy more coffee it's always well received!
 
 <a href="https://www.buymeacoffee.com/edgardo" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
