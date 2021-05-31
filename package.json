@@ -17,6 +17,9 @@
     "dev": "webpack-dev-server --config ./build/webpack.config.js -env.NODE_ENV=development --mode=development --progress --open",
     "prod": "rimraf dist && webpack --config ./build/webpack.config.js --env.NODE_ENV=production --mode=production -p --progress "
   },
+  "resolutions": {
+    "upath": "1.1.0"
+  },
   "devDependencies": {
     "autoprefixer": "^8.2.0",
     "babel-core": "^6.26.0",
