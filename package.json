@@ -15,7 +15,7 @@
     "build": "rimraf dist && webpack --config ./build/webpack.config.js --mode development --progress",
     "dev-network": "webpack server --config ./build/webpack.config.js --mode=development --progress --open --host 0.0.0.0",
     "dev": "webpack serve --config ./build/webpack.config.js --mode development --progress",
-    "prod": "rimraf dist && webpack --config ./build/webpack.config.js --mode production -p --progress "
+    "prod": "rimraf dist && webpack --config ./build/webpack.config.js --mode production --progress "
   },
   "resolutions": {
     "upath": "1.1.1"
