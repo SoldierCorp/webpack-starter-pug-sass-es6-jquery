@@ -1,5 +1,11 @@
 Webpack project starter with Pug, Sass/Stylus, jQuery, VanillaJS, Babel and Yarn
-===================
+
+---
+
+## Now working with Webpack 5 🎉
+You can still use Webpack 4 by downloading [this branch](https://github.com/SoldierCorp/webpack-starter-pug-sass-es6-jquery/tree/webpack-4)
+
+---
 
 The purpose of this Webpack Starter is to allow people to create websites without any framework/library like React, Angular, Vue but only using simple but powerful technologies to build quality websites.
 
