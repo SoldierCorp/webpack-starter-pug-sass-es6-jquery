@@ -120,9 +120,7 @@ module.exports = env => {
       minimize: true,
       minimizer: [
         new TerserPlugin({
-          cache: true,
           parallel: true,
-          sourceMap: true,
         }),
         new OptimizeCSSAssetsPlugin({})
       ],
