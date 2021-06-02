@@ -18,7 +18,7 @@
     "prod": "rimraf dist && webpack --config ./build/webpack.config.js --mode production -p --progress "
   },
   "resolutions": {
-    "upath": "1.1.0"
+    "upath": "1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
@@ -56,5 +56,8 @@
   "dependencies": {
     "jquery": "^3.6.0",
     "normalize.css": "^8.0.1"
-  }
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }
