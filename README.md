@@ -58,7 +58,7 @@ Any contribution is well received. You only have to fork this repo and submit yo
 
 ## Terms of use
 
-Feel free to use it in the way you want. Just be sure to add a link/mention to the original repository or the author, me 🙂
+Feel free to use it in the way you want. It will be awesome if you could add a link/mention to the original repository or me, so more people can use it in their projects 🙂
 
 ## Donations
 
