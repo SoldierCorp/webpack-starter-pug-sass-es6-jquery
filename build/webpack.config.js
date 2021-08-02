@@ -116,6 +116,9 @@ module.exports = env => {
         } */
       ]
     },
+    experiments: {
+      topLevelAwait: true,
+    },
     optimization: {
       minimize: true,
       minimizer: [
