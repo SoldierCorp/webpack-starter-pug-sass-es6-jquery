@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "description": "My project description",
   "author": {
-		"name" : "Edgardo Ramírez León",
-		"email" : "me@edgardo.com",
-		"url" : "https://edgardorl.com"
-	},
+    "name": "Edgardo Ramírez León",
+    "email": "me@edgardo.com",
+    "url": "https://edgardorl.com"
+  },
   "main": "app.js",
   "repository": "git@github.com:my-user/my-repo.git",
   "license": "MIT",
@@ -54,6 +54,8 @@
     "webpack-notifier": "^1.13.0"
   },
   "dependencies": {
+    "@popperjs/core": "^2.9.3",
+    "bootstrap": "^5.1.0",
     "jquery": "^3.6.0",
     "normalize.css": "^8.0.1"
   },
