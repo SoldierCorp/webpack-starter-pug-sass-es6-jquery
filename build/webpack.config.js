@@ -67,8 +67,6 @@ module.exports = env => {
               options: {
                 importLoaders: 1,
                 sourceMap: true,
-                minimize: true,
-                colormin: false,
               },
             },
           ],
