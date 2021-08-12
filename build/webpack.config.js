@@ -1,16 +1,16 @@
 // Libraries
-require('../postcss.config');
+require('../postcss.config')
 
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackNotifierPlugin = require('webpack-notifier');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WebpackNotifierPlugin = require('webpack-notifier')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-const ASSET_PATH = process.env.ASSET_PATH || '/';
+const ASSET_PATH = process.env.ASSET_PATH || '/'
 
 
 // Files
@@ -69,8 +69,6 @@ module.exports = env => {
               options: {
                 importLoaders: 1,
                 sourceMap: true,
-                minimize: true,
-                colormin: false,
               },
             },
           ],
@@ -186,4 +184,4 @@ module.exports = env => {
       })
     ]
   }
-};
+}
