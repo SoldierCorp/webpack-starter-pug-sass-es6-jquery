@@ -55,10 +55,6 @@
     "webpack-notifier": "^1.13.0"
   },
   "dependencies": {
-    "@popperjs/core": "^2.9.3",
-    "bootstrap": "^5.1.0",
-    "jquery": "^3.6.0",
-    "normalize.css": "^8.0.1"
   },
   "browserslist": [
     "defaults"
