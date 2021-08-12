@@ -55,6 +55,8 @@
     "webpack-notifier": "^1.13.0"
   },
   "dependencies": {
+    "jquery": "^3.6.0",
+    "normalize.css": "^8.0.1"
   },
   "browserslist": [
     "defaults"
