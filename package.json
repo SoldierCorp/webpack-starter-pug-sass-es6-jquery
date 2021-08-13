@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "description": "My project description",
   "author": {
-		"name" : "Edgardo Ramírez León",
-		"email" : "me@edgardo.com",
-		"url" : "https://edgardorl.com"
-	},
+    "name": "Edgardo Ramírez León",
+    "email": "me@edgardo.com",
+    "url": "https://edgardorl.com"
+  },
   "main": "app.js",
   "repository": "git@github.com:my-user/my-repo.git",
   "license": "MIT",
@@ -41,6 +41,7 @@
     "postcss-import": "^14.0.2",
     "postcss-loader": "^5.3.0",
     "postcss-modules": "^4.0.0",
+    "postcss-preset-env": "^6.7.0",
     "pug": "^3.0.2",
     "pug-loader": "^2.4.0",
     "rimraf": "^3.0.2",
