@@ -21,7 +21,6 @@ module.exports = env => {
 
   return {
     target: 'web',
-
     context: path.join(__dirname, '../src'),
     entry: {
       app: path.join(__dirname, '../src/app.js'),
@@ -92,28 +91,25 @@ module.exports = env => {
         },
         {
           test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
-          loader: 'url-loader',
-          options: {
-            limit: 3000,
-            name: 'assets/images/[name].[contenthash:7].[ext]'
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/images/[name].[contenthash:7][ext]'
           }
         },
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-          loader: 'url-loader',
-          options: {
-            limit: 5000,
-            name: 'assets/fonts/[name].[contenthash:7].[ext]'
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/fonts/[name].[contenthash:7][ext]'
           }
         },
-        /* {
+        /*{
           test: /\.(mp4)(\?.*)?$/,
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: 'assets/videos/[name].[contenthash:7].[ext]'
-          }
-        } */
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/videos/[name].[contenthash:7][ext]'
+          },
+        }*/
       ]
     },
     experiments: {
