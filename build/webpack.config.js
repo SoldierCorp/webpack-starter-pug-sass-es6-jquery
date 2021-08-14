@@ -12,14 +12,17 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const ASSET_PATH = process.env.ASSET_PATH || '/'
 
-
 // Files
 const utils = require('./utils')
 
 // Configuration
-module.exports = env => {
+module.exports = (env) => {
+
+  // Get default mode from env
+  const MODE = env.mode || 'production';
 
   return {
+    mode: MODE,
     target: 'web',
     context: path.join(__dirname, '../src'),
     entry: {
@@ -62,7 +65,7 @@ module.exports = env => {
         {
           test: /\.css$/,
           use: [
-            env === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+            MODE === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader',
               options: {
@@ -75,7 +78,7 @@ module.exports = env => {
         {
           test: /\.scss$/,
           use: [
-            env === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
+            MODE === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
             { loader: 'css-loader', options: { importLoaders: 1, sourceMap: true } }, // translates CSS into CommonJS
             'postcss-loader',
             'sass-loader', // compiles Sass to CSS
@@ -158,16 +161,17 @@ module.exports = env => {
         Pages
       */
 
-      // Desktop page
+      // Homepage
       new HtmlWebpackPlugin({
-        minify: !env === 'development',
+        minify: !MODE === 'development',
         filename: 'index.html',
         template: 'views/index.pug',
         inject: 'body',
       }),
 
-      ...utils.pages(env), // env, public path, parent folder
-      ...utils.pages(env, 'blog'),
+      // Other pages
+      ...utils.pages(MODE), // mode
+      ...utils.pages(MODE, 'blog'), // mode, folder name under pages
 
       new webpack.ProvidePlugin({
         $: 'jquery',

@@ -1,4 +1,4 @@
-exports.pages = function (env, folder = '') {
+exports.pages = function (mode, folder = '') {
   const rootPagesFolderName = 'pages'
   const HtmlWebpackPlugin = require('html-webpack-plugin')
   const fs = require('fs')
@@ -14,13 +14,13 @@ exports.pages = function (env, folder = '') {
     const viewName = view.split('.')[0]
     const fileName = folder === '' ? `${viewName}/index.html` : `${folder}/${viewName}/index.html`
     const options = {
-      minify: !env === 'development',
+      minify: !mode === 'development',
       filename: fileName,
       template: `views/${rootPagesFolderName}/${folder}/${view}`,
       inject: true
     }
 
-    if (env === 'development') {
+    if (mode === 'development') {
       options.minify = {
         removeComments: true,
         collapseWhitespace: true,
