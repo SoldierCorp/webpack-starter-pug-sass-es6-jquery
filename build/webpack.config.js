@@ -65,7 +65,7 @@ module.exports = (env) => {
         {
           test: /\.css$/,
           use: [
-            MODE === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+            utils.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader',
               options: {
@@ -78,7 +78,7 @@ module.exports = (env) => {
         {
           test: /\.scss$/,
           use: [
-            MODE === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
+            utils.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
             { loader: 'css-loader', options: { importLoaders: 1, sourceMap: true } }, // translates CSS into CommonJS
             'postcss-loader',
             'sass-loader', // compiles Sass to CSS
@@ -163,7 +163,7 @@ module.exports = (env) => {
 
       // Homepage
       new HtmlWebpackPlugin({
-        minify: !MODE === 'development',
+        minify: !utils.isDevMode(MODE),
         filename: 'index.html',
         template: 'views/index.pug',
         inject: 'body',
