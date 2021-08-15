@@ -12,16 +12,18 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const ASSET_PATH = process.env.ASSET_PATH || '/'
 
-
 // Files
 const utils = require('./utils')
 
 // Configuration
-module.exports = env => {
+module.exports = (env) => {
+
+  // Get default mode from env
+  const MODE = env.mode || 'production';
 
   return {
+    mode: MODE,
     target: 'web',
-
     context: path.join(__dirname, '../src'),
     entry: {
       app: path.join(__dirname, '../src/app.js'),
@@ -63,7 +65,7 @@ module.exports = env => {
         {
           test: /\.css$/,
           use: [
-            env === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+            utils.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader',
               options: {
@@ -76,7 +78,7 @@ module.exports = env => {
         {
           test: /\.scss$/,
           use: [
-            env === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
+            utils.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
             { loader: 'css-loader', options: { importLoaders: 1, sourceMap: true } }, // translates CSS into CommonJS
             'postcss-loader',
             'sass-loader', // compiles Sass to CSS
@@ -92,28 +94,25 @@ module.exports = env => {
         },
         {
           test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
-          loader: 'url-loader',
-          options: {
-            limit: 3000,
-            name: 'assets/images/[name].[contenthash:7].[ext]'
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/images/[name].[contenthash:7][ext]'
           }
         },
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-          loader: 'url-loader',
-          options: {
-            limit: 5000,
-            name: 'assets/fonts/[name].[contenthash:7].[ext]'
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/fonts/[name].[contenthash:7][ext]'
           }
         },
-        /* {
+        /*{
           test: /\.(mp4)(\?.*)?$/,
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: 'assets/videos/[name].[contenthash:7].[ext]'
-          }
-        } */
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/videos/[name].[contenthash:7][ext]'
+          },
+        }*/
       ]
     },
     experiments: {
@@ -162,16 +161,17 @@ module.exports = env => {
         Pages
       */
 
-      // Desktop page
+      // Homepage
       new HtmlWebpackPlugin({
-        minify: !env === 'development',
+        minify: !utils.isDevMode(MODE),
         filename: 'index.html',
         template: 'views/index.pug',
         inject: 'body',
       }),
 
-      ...utils.pages(env), // env, public path, parent folder
-      ...utils.pages(env, 'blog'),
+      // Other pages
+      ...utils.pages(MODE), // mode
+      ...utils.pages(MODE, 'blog'), // mode, folder name under pages
 
       new webpack.ProvidePlugin({
         $: 'jquery',

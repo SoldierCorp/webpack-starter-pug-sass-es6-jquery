@@ -12,10 +12,10 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist && webpack --config ./build/webpack.config.js --mode development --progress",
-    "dev-network": "webpack server --config ./build/webpack.config.js --mode=development --progress --open --host 0.0.0.0",
-    "dev": "webpack serve --config ./build/webpack.config.js --mode development --progress",
-    "prod": "rimraf dist && webpack --config ./build/webpack.config.js --mode production --progress "
+    "build": "rimraf dist && webpack --env mode=development --config ./build/webpack.config.js --progress",
+    "dev-network": "webpack serve --env mode=development --config ./build/webpack.config.js --progress --open --host 0.0.0.0 --disable-host-check",
+    "dev": "webpack serve --env mode=development --config ./build/webpack.config.js --progress",
+    "prod": "rimraf dist && webpack --env mode=production --config ./build/webpack.config.js --progress "
   },
   "resolutions": {
     "upath": "1.1.1"
