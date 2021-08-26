@@ -24,6 +24,7 @@ module.exports = (env) => {
   return {
     mode: MODE,
     target: 'web',
+    devtool: 'eval-source-map',
     context: path.join(__dirname, '../src'),
     entry: {
       app: path.join(__dirname, '../src/app.js'),

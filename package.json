@@ -1,14 +1,14 @@
 {
-  "name": "my-project",
+  "name": "webpackp-starter",
   "version": "0.0.1",
-  "description": "My project description",
+  "description": "Webpack 5 starter that supports Pug, SASS, ES6 ES7 ES8 ES9 ES10 ES11 ES12, VanillaJS/jQuery... (without framework) and generate URLs without the .html extension.",
   "author": {
     "name": "Edgardo Ramírez León",
     "email": "me@edgardo.com",
     "url": "https://edgardorl.com"
   },
-  "main": "app.js",
-  "repository": "git@github.com:my-user/my-repo.git",
+  "main": "src/app.js",
+  "repository": "git@github.com:SoldierCorp/webpack-starter-pug-sass-es6-jquery.git",
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
