@@ -17,7 +17,7 @@ With this starter you can have clean URLs by removing the .html extension. For e
 
 ## Demo
 
-🔗 https://webpack-starter.netlify.app/
+🔗 https://webpack-starter.edgardorl.com/
 
 ## Technologies used
 
