@@ -26,6 +26,9 @@ With this starter you can have clean URLs by removing the .html extension. For e
 - Scripting: `jQuery or VanillaJS(plain Javascript)`
 - JS Compiler: `Babel ES6 ES7 ES8 ES9 ES10 ES11 ES12` (that means you can use async/await, replaceAll, optional chaining... among many others)
 
+## Don't like jQuery?
+- You can remove it from the packages and from the Webpack config file and by removing it, your final build will be considerably reduced in size.
+
 ## Features
 
 - Well organized folder structure for views, styles, and assets.
