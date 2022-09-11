@@ -29,7 +29,6 @@
 
 /*
   Pages
+  Note: for each page generate separate CSS file based on this main file, 
+  because on 'Homepage' we won't have CSS for other pages.
 */
-@import './pages/index';
-@import './pages/blog';
-@import './pages/contact';

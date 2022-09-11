@@ -1,5 +1,11 @@
 extends ../layouts/master.pug
 
+append styles
+  link(rel='stylesheet' href=require('source/assets/styles/pages/contact.scss'))
+
+append scripts
+  script(src=require('source/assets/scripts/pages/contact.js'))
+
 block title
   title My Page - Contact
 
