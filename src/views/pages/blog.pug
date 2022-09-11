@@ -1,5 +1,11 @@
 extends ../layouts/master.pug
 
+append styles
+  link(rel='stylesheet' href=require('source/assets/styles/pages/blog.scss'))
+
+append scripts
+  script(src=require('source/assets/scripts/pages/blog.js'))
+
 block title
   title My Page - Blog
 

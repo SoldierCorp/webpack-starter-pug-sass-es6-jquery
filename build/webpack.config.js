@@ -3,12 +3,14 @@ require('../postcss.config')
 
 const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackNotifierPlugin = require('webpack-notifier')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
+// Note: the single pug-plugin replaces functionality of plugins and loaders:
+// - html-webpack-plugin
+// - mini-css-extract-plugin
+// - pug-loader
+const PugPlugin = require('pug-plugin')
 
 const ASSET_PATH = process.env.ASSET_PATH || '/'
 
@@ -17,28 +19,56 @@ const utils = require('./utils')
 
 // Configuration
 module.exports = (env) => {
-
   // Get default mode from env
-  const MODE = env.mode || 'production';
+  const MODE = env.mode || 'production'
+  const isDev = utils.isDevMode(MODE)
 
   return {
     mode: MODE,
     target: 'web',
     devtool: 'eval-source-map',
     context: path.join(__dirname, '../src'),
+
     entry: {
-      app: path.join(__dirname, '../src/app.js'),
+      // Define all pages here.
+      // Using pug-plugin the entry point for each page is Pug template.
+      // All source scripts and styles must be defined directly in Pug using `require()`.
+      
+      index: '../src/views/index.pug', // => dist/index.html
+
+      ...utils.pages(), // other pages
+      ...utils.pages('blog'), // folder name under pages
+
+      // Note: utils.pages() and utils.pages('blog') generates following entries (you can define the entries manual)
+      //'contact/index': '../src/views/pages/contact.pug', // => dist/contact/index.html
+      //'blog/index': '../src/views/pages/blog.pug',
+      //'blog/example-post/index': '../src/views/pages/blog/example-post.pug',
     },
+
     output: {
-      publicPath: ASSET_PATH,
+      //publicPath: ASSET_PATH,
+
+      // all asset paths will be auto resolved relative to ther issuers,
+      // useful to open index.html in browser from local generated `dist/` directory
+      publicPath: 'auto',
       path: path.join(__dirname, '../dist'),
       filename: 'assets/js/[name].[contenthash:7].bundle.js'
     },
+
     devServer: {
-      contentBase: path.join(__dirname, '../src'),
+      static: {
+        directory: path.join(__dirname, '../dist'),
+      },
       compress: true,
-      open: true
+      open: true,
+      watchFiles: {
+        paths: [path.join(__dirname,'../src/**/*.*')],
+        options: {
+          usePolling: true,
+        },
+      },
     },
+
     resolve: {
       extensions: ['.js'],
       alias: {
@@ -64,34 +94,16 @@ module.exports = (env) => {
           ]
         },
         {
-          test: /\.css$/,
+          test: /\.(css|scss)$/,
           use: [
-            utils.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                sourceMap: true,
-              },
-            },
-          ],
-        },
-        {
-          test: /\.scss$/,
-          use: [
-            utils.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
-            { loader: 'css-loader', options: { importLoaders: 1, sourceMap: true } }, // translates CSS into CommonJS
+            'css-loader', // translates CSS into CommonJS, note: use defaults options
             'postcss-loader',
             'sass-loader', // compiles Sass to CSS
           ],
         },
         {
           test: /\.pug$/,
-          use: [
-            {
-              loader: 'pug-loader'
-            }
-          ]
+          loader: PugPlugin.loader,
         },
         {
           test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
@@ -120,13 +132,7 @@ module.exports = (env) => {
       topLevelAwait: true,
     },
     optimization: {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          parallel: true,
-        }),
-        new OptimizeCSSAssetsPlugin({})
-      ],
+      // note: CSS and JS will be automatically minified via Webpack 5 in `production` mode
       splitChunks: {
         cacheGroups: {
           default: false,
@@ -137,7 +143,7 @@ module.exports = (env) => {
             // sync + async chunks
             chunks: 'all',
             // import file path containing node_modules
-            test: /node_modules/
+            test: /[\\/]node_modules[\\/].+\.(js|ts)$/, // use exactly this Regexp to match JS files only
           }
         }
       }
@@ -153,26 +159,16 @@ module.exports = (env) => {
           { from: 'assets/images/favicons/mstile-150x150.png', to: 'assets/images/mstile-150x150.png' }
         ]
       }),
-      new MiniCssExtractPlugin({
-        filename: 'assets/css/[name].[chunkhash:7].bundle.css',
-        chunkFilename: '[id].css',
+
+      // enable processing of Pug files defined in entry
+      new PugPlugin({
+        //verbose: isDev, // display processing information
+        pretty: isDev, // formatting of HTML
+        // extract CSS from style sources defined in Pug
+        extractCss: {
+          filename: 'assets/css/[name].[contenthash:7].css',
+        },
       }),
-
-      /*
-        Pages
-      */
-
-      // Homepage
-      new HtmlWebpackPlugin({
-        minify: !utils.isDevMode(MODE),
-        filename: 'index.html',
-        template: 'views/index.pug',
-        inject: 'body',
-      }),
-
-      // Other pages
-      ...utils.pages(MODE), // mode
-      ...utils.pages(MODE, 'blog'), // mode, folder name under pages
 
       new webpack.ProvidePlugin({
         $: 'jquery',
@@ -180,6 +176,7 @@ module.exports = (env) => {
         'window.$': 'jquery',
         'window.jQuery': 'jquery'
       }),
+
       new WebpackNotifierPlugin({
         title: 'Your project'
       })

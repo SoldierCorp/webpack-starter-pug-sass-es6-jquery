@@ -55,6 +55,9 @@ html(lang='en')
       link(rel='manifest', href='./manifest.json', crossorigin)
       meta(name='msapplication-config' content='./browserconfig.xml')
 
+    //- Styles
+    block styles
+
   body
 
     //- Menu
@@ -68,6 +71,8 @@ html(lang='en')
 
     //- block scripts
     block scripts
+      //- common used scripts on all pages
+      script(src=require('source/assets/scripts/app.js'))
 
     // Global site tag (gtag.js) - Google Analytics
     script(async='' src='https://www.googletagmanager.com/gtag/js?id=UA-56237358-2')
