@@ -68,3 +68,6 @@ Feel free to use it in the way you want. It will be awesome if you could add a l
 A donation to buy more coffee it's always well received!
 
 <a href="https://www.buymeacoffee.com/edgardo" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+
+## Blog post
+https://sectorgeek.com/simple-webpack-starter-with-pug-sass-jquery-es6-and-more/
