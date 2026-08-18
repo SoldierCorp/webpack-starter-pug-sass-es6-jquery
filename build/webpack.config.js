@@ -66,7 +66,7 @@ module.exports = (env) => {
         {
           test: /\.css$/,
           use: [
-            utils.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader,
+            MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader',
               options: {
@@ -79,7 +79,7 @@ module.exports = (env) => {
         {
           test: /\.scss$/,
           use: [
-            utils.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
+            MiniCssExtractPlugin.loader, // creates style nodes from JS strings
             { loader: 'css-loader', options: { importLoaders: 1, sourceMap: true } }, // translates CSS into CommonJS
             'postcss-loader',
             'sass-loader', // compiles Sass to CSS
